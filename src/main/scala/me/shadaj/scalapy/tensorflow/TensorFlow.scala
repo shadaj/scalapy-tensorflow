@@ -5,84 +5,46 @@ import me.shadaj.scalapy.py
 import me.shadaj.scalapy.py.{ObjectFascade, PyFunction, |}
 
 class TensorFlow(o: py.Object)(implicit jep: Jep) extends ObjectFascade(o) {
-  def Variable(initialValue: Tensor): Variable = {
-    dynamic.Variable(initialValue).as[Variable]
-  }
+  def Variable(initialValue: Tensor): Variable = native
 
-  def random_uniform(shape: Seq[py.NoneOr[Int]], min: Double, max: Double): Tensor = {
-    dynamic.random_uniform(shape, min, max).as[Tensor]
-  }
+  def random_uniform(shape: Seq[py.NoneOr[Int]], min: Double, max: Double): Tensor = native
 
-  def placeholder(`type`: String): Tensor = {
-    dynamic.placeholder(`type`).as[Tensor]
-  }
+  def placeholder(`type`: String): Tensor = native
 
-  def placeholder(`type`: String, shape: Seq[py.NoneOr[Int]]): Tensor = {
-    dynamic.placeholder(`type`, shape).as[Tensor]
-  }
+  def placeholder(`type`: String, shape: Seq[py.NoneOr[Int]]): Tensor = native
 
-  def nn: NeuralNetwork = dynamic.nn.as[NeuralNetwork]
-  def train: Training = dynamic.train.as[Training]
+  def nn: NeuralNetwork = native
+  def train: Training = native
 
-  def matmul(a: Tensor, b: Tensor): Tensor = {
-    dynamic.matmul(a, b).as[Tensor]
-  }
+  def matmul(a: Tensor, b: Tensor): Tensor = native
 
-  def identity: PyFunction = {
-    dynamic.identity.as[PyFunction]
-  }
+  def identity: PyFunction = native
 
-  def identity(t: Tensor): Tensor = {
-    dynamic.identity(t).as[Tensor]
-  }
+  def identity(t: Tensor): Tensor = native
 
-  def zeros(shape: Seq[Int]): Tensor = {
-    dynamic.zeros(shape).as[Tensor]
-  }
+  def zeros(shape: Seq[Int]): Tensor = native
 
-  def add_n(ts: Seq[Tensor]): Tensor = {
-    dynamic.add_n(ts).as[Tensor]
-  }
+  def add_n(ts: Seq[Tensor]): Tensor = native
 
-  def square(t: Tensor): Tensor = {
-    dynamic.square(t).as[Tensor]
-  }
+  def square(t: Tensor): Tensor = native
 
-  def tanh(t: Tensor): Tensor = {
-    dynamic.tanh(t).as[Tensor]
-  }
+  def tanh(t: Tensor): Tensor = native
 
-  def reduce_mean(t: Tensor): Tensor = {
-    dynamic.reduce_mean(t).as[Tensor]
-  }
+  def reduce_mean(t: Tensor): Tensor = native
 
-  def gradients(ys: Tensor | Seq[Tensor], xs: Tensor | Seq[Tensor]): Seq[Tensor] = {
-    dynamic.gradients(ys, xs).as[Seq[Tensor]]
-  }
+  def gradients(ys: Tensor | Seq[Tensor], xs: Tensor | Seq[Tensor]): Seq[Tensor] = native
 
-  def gradients(ys: Tensor, xs: Seq[Tensor], grad_ys: Tensor): Seq[Tensor] = {
-    dynamic.gradients(ys, xs, grad_ys).as[Seq[Tensor]]
-  }
+  def gradients(ys: Tensor, xs: Seq[Tensor], grad_ys: Tensor): Seq[Tensor] = native
 
-  def initialize_all_variables(): Operation = {
-    dynamic.initialize_all_variables().as[Operation]
-  }
+  def initialize_all_variables(): Operation = native
 
-  def global_variables_initializer(): Operation = {
-    dynamic.global_variables_initializer().as[Operation]
-  }
+  def global_variables_initializer(): Operation = native
 
-  def Session(): Session = {
-    dynamic.Session().as[Session]
-  }
+  def Session(): Session = native
 
-  def InteractiveSession(): Session = {
-    dynamic.InteractiveSession().as[Session]
-  }
+  def InteractiveSession(): Session = native
 
-  def cond(c: Tensor, ifTrue: py.Object, ifFalse: py.Object): Tensor = {
-    dynamic.cond(c, ifTrue, ifFalse).as[Tensor]
-  }
+  def cond(c: Tensor, ifTrue: py.Object, ifFalse: py.Object): Tensor = native
 
-  def contrib: Contrib = dynamic.contrib.as[Contrib]
+  def contrib: Contrib = native
 }
