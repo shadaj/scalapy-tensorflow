@@ -32,6 +32,8 @@ class TensorFlow(o: py.Object)(implicit jep: Jep) extends ObjectFacade(o) {
 
   def zeros(shape: Seq[Int]): Tensor = native
 
+  def reshape(tensor: Tensor, shape: PythonList[Int]): Tensor = native
+
   def add_n(ts: Seq[Tensor]): Tensor = native
 
   def square(t: Tensor): Tensor = native
