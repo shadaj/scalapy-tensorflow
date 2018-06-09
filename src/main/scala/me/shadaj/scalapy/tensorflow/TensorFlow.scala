@@ -2,12 +2,20 @@ package me.shadaj.scalapy.tensorflow
 
 import jep.Jep
 import me.shadaj.scalapy.py
-import me.shadaj.scalapy.py.{ObjectFascade, PyFunction, |}
+import me.shadaj.scalapy.py.{ObjectFacade, ObjectWriter, PyFunction, |}
 
-class TensorFlow(o: py.Object)(implicit jep: Jep) extends ObjectFascade(o) {
+// some TensorFlow operations require a LIST list, not just something iterable
+class PythonList[T](o: py.Object)(implicit jep: Jep) extends py.Object(o.variableId)
+object PythonList {
+  implicit def seqToPythonList[T](seq: Seq[T])(implicit writer: ObjectWriter[Seq[T]], jep: Jep): PythonList[T] = {
+    new PythonList(py.global.list(py.Object.from(seq)))
+  }
+}
+
+class TensorFlow(o: py.Object)(implicit jep: Jep) extends ObjectFacade(o) {
   def Variable(initialValue: Tensor): Variable = native
 
-  def random_uniform(shape: Seq[py.NoneOr[Int]], min: Double, max: Double): Tensor = native
+  def random_uniform(shape: PythonList[Int], min: Double, max: Double): Tensor = native
 
   def placeholder(`type`: String): Tensor = native
 

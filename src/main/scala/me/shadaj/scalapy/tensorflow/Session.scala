@@ -3,9 +3,9 @@ package me.shadaj.scalapy.tensorflow
 import jep.Jep
 import me.shadaj.scalapy.numpy._
 import me.shadaj.scalapy.py
-import me.shadaj.scalapy.py.ObjectFascade
+import me.shadaj.scalapy.py.ObjectFacade
 
-class Session(o: py.Object)(implicit jep: Jep) extends ObjectFascade(o) {
+class Session(o: py.Object)(implicit jep: Jep) extends ObjectFacade(o) {
   def run(fetches: Operation): Unit = native
 
   def run(fetches: Variable): Seq[Double] = native
