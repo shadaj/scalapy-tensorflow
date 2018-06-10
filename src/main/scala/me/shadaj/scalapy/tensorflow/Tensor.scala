@@ -2,30 +2,32 @@ package me.shadaj.scalapy.tensorflow
 
 import jep.Jep
 import me.shadaj.scalapy.py
-import me.shadaj.scalapy.py.ObjectFascade
+import me.shadaj.scalapy.py.ObjectFacade
 
-class Tensor(o: py.Object)(implicit jep: Jep) extends ObjectFascade(o) {
+class Tensor(o: py.Object)(implicit jep: Jep) extends ObjectFacade(o) {
   def unary_+(): Tensor = {
-    (+dynamic).as[Tensor]
+    (+toDynamic).as[Tensor]
   }
 
   def unary_-(): Tensor = {
-    (-dynamic).as[Tensor]
+    (-toDynamic).as[Tensor]
   }
 
   def +(that: Tensor): Tensor = {
-    (dynamic + that).as[Tensor]
+    (toDynamic + that).as[Tensor]
   }
 
   def -(that: Tensor): Tensor = {
-    (dynamic - that).as[Tensor]
+    (toDynamic - that).as[Tensor]
   }
 
   def *(that: Tensor): Tensor = {
-    (dynamic * that).as[Tensor]
+    println(toDynamic)
+    println(that)
+    (toDynamic * that).as[Tensor]
   }
 
   def /(that: Tensor): Tensor = {
-    (dynamic / that).as[Tensor]
+    (toDynamic / that).as[Tensor]
   }
 }

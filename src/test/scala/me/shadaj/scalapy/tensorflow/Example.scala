@@ -9,7 +9,7 @@ object Example extends App {
 
   // prep for tensorflow
   val sys = py.module("sys")
-  sys.argv = Array("jep")
+  sys.argv = Seq("jep")
   sys.path.insert(0, "./src/main/python")
 
   val tf = py.module("tensorflow").as[TensorFlow]
