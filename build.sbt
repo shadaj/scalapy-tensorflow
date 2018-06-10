@@ -8,4 +8,4 @@ fork in Test := true
 
 javaOptions in Test += "-Djava.library.path=/usr/local/lib/python3.6/site-packages/jep"
 
-libraryDependencies += "me.shadaj" %% "scalapy-numpy" % "6ce04510"
+libraryDependencies += "me.shadaj" %% "scalapy-numpy" % "0.1.0"
