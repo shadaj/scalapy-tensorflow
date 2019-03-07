@@ -22,8 +22,6 @@ class Tensor(o: py.Object)(implicit jep: Jep) extends ObjectFacade(o) {
   }
 
   def *(that: Tensor): Tensor = {
-    println(toDynamic)
-    println(that)
     (toDynamic * that).as[Tensor]
   }
 
