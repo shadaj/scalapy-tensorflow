@@ -1,17 +1,9 @@
 package me.shadaj.scalapy.tensorflow
 
 import me.shadaj.scalapy.py
-import jep.Jep
 import me.shadaj.scalapy.numpy.NumPy
 
 object Example extends App {
-  implicit val jep = new Jep()
-
-  // prep for tensorflow
-  val sys = py.module("sys")
-  sys.argv = Seq("jep")
-  sys.path.insert(0, "./src/main/python")
-
   val tf = py.module("tensorflow").as[TensorFlow]
   val np = py.module("numpy").as[NumPy]
 

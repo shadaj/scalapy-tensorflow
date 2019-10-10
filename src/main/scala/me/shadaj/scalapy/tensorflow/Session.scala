@@ -1,27 +1,26 @@
 package me.shadaj.scalapy.tensorflow
 
-import jep.Jep
 import me.shadaj.scalapy.numpy._
 import me.shadaj.scalapy.py
-import me.shadaj.scalapy.py.{ObjectFacade, ObjectWriter}
+import me.shadaj.scalapy.py.Writer
 
-class PythonDict[K, V](o: py.Object)(implicit jep: Jep) extends py.Object(o.variableId)
+@py.native trait PythonDict[K, V] extends py.Object
 object PythonDict {
-  implicit def mapToPythonDict[K, V](map: Map[K, V])(implicit writer: ObjectWriter[Map[K, V]], jep: Jep): PythonDict[K, V] = {
-    new PythonDict(py.global.dict(py.Object.from(map)))
+  implicit def mapToPythonDict[K, V](map: Map[K, V])(implicit writer: Writer[Map[K, V]]): PythonDict[K, V] = {
+    py.global.dict(map).as[PythonDict[K, V]]
   }
 }
 
-class Session(o: py.Object)(implicit jep: Jep) extends ObjectFacade(o) {
-  def run(fetches: Operation): Unit = native
+@py.native trait Session extends py.Object {
+  def run(fetches: Operation): Unit = py.native
 
-  def run(fetches: Variable): Seq[Double] = native
+  def run(fetches: Variable): Seq[Double] = py.native
 
-  def run(fetches: Tensor): Seq[NDArray[Double]] = native
+  def run(fetches: Tensor): Seq[NDArray[Double]] = py.native
 
-  def run(fetches: Operation, feedDict: PythonDict[Tensor, py.Object]): Unit = native
+  def run(fetches: Operation, feedDict: PythonDict[Tensor, py.Object]): Unit = py.native
 
-  def run(fetches: Tensor, feedDict: PythonDict[Tensor, py.Object]): Seq[NDArray[Double]] = native
+  def run(fetches: Tensor, feedDict: PythonDict[Tensor, py.Object]): Seq[NDArray[Double]] = py.native
 
-  def run(fetches: Seq[Tensor], feedDict: PythonDict[Tensor, py.Object]): Seq[Seq[NDArray[Double]]] = native
+  def run(fetches: Seq[Tensor], feedDict: PythonDict[Tensor, py.Object]): Seq[Seq[NDArray[Double]]] = py.native
 }

@@ -1,31 +1,29 @@
 package me.shadaj.scalapy.tensorflow
 
-import jep.Jep
 import me.shadaj.scalapy.py
-import me.shadaj.scalapy.py.ObjectFacade
 
-class Tensor(o: py.Object)(implicit jep: Jep) extends ObjectFacade(o) {
+@py.native trait Tensor extends py.Object {
   def unary_+(): Tensor = {
-    (+toDynamic).as[Tensor]
+    (+as[py.Dynamic]).as[Tensor]
   }
 
   def unary_-(): Tensor = {
-    (-toDynamic).as[Tensor]
+    (-as[py.Dynamic]).as[Tensor]
   }
 
   def +(that: Tensor): Tensor = {
-    (toDynamic + that).as[Tensor]
+    (as[py.Dynamic] + that).as[Tensor]
   }
 
   def -(that: Tensor): Tensor = {
-    (toDynamic - that).as[Tensor]
+    (as[py.Dynamic] - that).as[Tensor]
   }
 
   def *(that: Tensor): Tensor = {
-    (toDynamic * that).as[Tensor]
+    (as[py.Dynamic] * that).as[Tensor]
   }
 
   def /(that: Tensor): Tensor = {
-    (toDynamic / that).as[Tensor]
+    (as[py.Dynamic] / that).as[Tensor]
   }
 }

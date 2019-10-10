@@ -1,13 +1,11 @@
 package me.shadaj.scalapy.tensorflow
 
-import jep.Jep
 import me.shadaj.scalapy.py
-import me.shadaj.scalapy.py.ObjectFacade
 
-class Training(o: py.Object)(implicit jep: Jep) extends ObjectFacade(o) {
-  def ExponentialMovingAverage(decay: Double): ExponentialMovingAverage = native
+@py.native trait Training extends py.Object {
+  def ExponentialMovingAverage(decay: Double): ExponentialMovingAverage = py.native
 
-  def GradientDescentOptimizer(learningRate: Double): Optimizer = native
+  def GradientDescentOptimizer(learningRate: Double): Optimizer = py.native
 
-  def AdamOptimizer(lr: Double): Optimizer = native
+  def AdamOptimizer(lr: Double): Optimizer = py.native
 }
