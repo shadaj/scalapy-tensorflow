@@ -1,8 +1,9 @@
 import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
+import scala.sys.process._
 
 organization in ThisBuild := "me.shadaj"
 
-scalaVersion in ThisBuild := "2.12.8"
+scalaVersion in ThisBuild := "2.12.10"
 
 addCommandAlias(
   "publishSignedAll",
@@ -27,13 +28,14 @@ lazy val scalaPyTensorFlowCross = crossProject(JVMPlatform, NativePlatform)
   .in(file("."))
   .settings(
     name := "scalapy-tensorflow",
-    libraryDependencies += "me.shadaj" %%% "scalapy-core" % "0.3.0",
-    libraryDependencies += "me.shadaj" %%% "scalapy-numpy" % "0.1.0+3-046d1d67",
+    libraryDependencies += "me.shadaj" %%% "scalapy-core" % "0.3.0+17-2bfe86de",
+    // TODO: update to released scalapy-numpy
+    libraryDependencies += "me.shadaj" %%% "scalapy-numpy" % "0.1.0+5-ad550211+20200401-1343",
     libraryDependencies += "org.scalatest" %%% "scalatest" % "3.1.0-SNAP8" % Test
   ).jvmSettings(
     libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.14.0" % Test,
     fork in Test := true,
-    javaOptions in Test += s"-Djava.library.path=${sys.env.getOrElse("JEP_PATH", "/usr/local/lib/python3.7/site-packages/jep")}"
+      javaOptions in Test += s"-Djna.library.path=${"python3-config --prefix".!!.trim}/lib"
   ).nativeSettings(
     scalaVersion := "2.11.12",
     libraryDependencies += "com.github.lolgab" %%% "scalacheck" % "1.14.1" % Test,
