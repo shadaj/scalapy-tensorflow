@@ -4,6 +4,16 @@ organization in ThisBuild := "me.shadaj"
 
 scalaVersion in ThisBuild := "2.12.8"
 
+Compile / scalaSource := baseDirectory.value / "src" /  "main" / "scala"
+
+Test / scalaSource := baseDirectory.value / "src" / "test" / "scala"
+
+// dependencies for scalapy-tensorflow-source
+libraryDependencies += "me.shadaj" %%% "scalapy-core" % "0.3.0"
+libraryDependencies += "me.shadaj" %%% "scalapy-numpy" % "0.1.0+3-046d1d67"
+libraryDependencies += "org.scalatest" %%% "scalatest" % "3.1.0-SNAP8" % Test
+
+
 addCommandAlias(
   "publishSignedAll",
   (scalaPyTensorFlow: ProjectDefinition[ProjectReference])
