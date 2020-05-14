@@ -18,3 +18,4 @@ libraryDependencies += "me.shadaj" %% "scalapy-tensorflow" % "0.1.0"
 ## Development
 Libraries required to run scala-native are listed here https://scala-native.readthedocs.io/en/v0.3.9-docs/user/setup.html.
  
+ 
